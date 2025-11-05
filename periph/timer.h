@@ -10,9 +10,9 @@
 #define _TIMER_H
 
 // Configure the timer to roll over at a 200Hz frequency.
-void initTimer( uint8_t size );
+void initDisplayTimer( uint8_t size );
 
 // Wait for the timer to roll over, then return.
-void waitOnTimer( void );
+void waitOnDisplayTimer( void );
 
 #endif // _TIMER_H

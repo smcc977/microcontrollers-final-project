@@ -48,7 +48,7 @@
 // 
 // ALSO: remember to enable the Run Mode Clock Gating for the timer before
 // attempting to access any of its registers!
-void initTimer( uint8_t size ) {
+void initDisplayTimer( uint8_t size ) {
 #ifdef USING_TIMER3A
   SYSCTL[SYSCTL_RCGCTIMER] |= SYSCTL_RCGCTIMER_TIMER3;
   SYSCTL[SYSCTL_RCGCTIMER] |= SYSCTL_RCGCTIMER_TIMER3;
@@ -82,7 +82,7 @@ void initTimer( uint8_t size ) {
 
 // Wait for Timer3A to reload, then return.  Perform any necessary actions to
 // clear the reload condition.  DO NOT turn off the timer!
-void waitOnTimer( void ) {
+void waitOnDisplayTimer( void ) {
 #ifdef USING_TIMER3A
     while ((GPTM_TIMER3[GPTM_RIS] & GPTM_RIS_TATORIS) == 0);
     GPTM_TIMER3[GPTM_ICR] = GPTM_ICR_TATOCINT;
