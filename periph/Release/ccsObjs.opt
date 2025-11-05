@@ -1,1 +1,1 @@
-"./led7seg.obj" "./osc.obj" 
+"./led7seg.obj" "./lookup.obj" "./osc.obj" "./timer.obj" 

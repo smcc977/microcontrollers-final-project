@@ -11,7 +11,9 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./led7seg.obj" \
+"./lookup.obj" \
 "./osc.obj" \
+"./timer.obj" \
 
 -include ../makefile.init
 
@@ -128,7 +130,7 @@ LIB_OUTPUTS__QUOTED += \
 all: periph.lib
 
 # Tool invocations
-periph.lib: $(OBJS)
+periph.lib: $(OBJS) $(OBJ_SRCS) $(LIB_SRCS)
 ifneq ($(strip $(ORDERED_OBJS)),)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Archiver'
@@ -140,8 +142,9 @@ endif
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "led7seg.obj" "osc.obj" 
-	-$(RM) "led7seg.d" "osc.d" 
+	-$(RM) "led7seg.obj" "lookup.obj" "osc.obj" "timer.obj" 
+	-$(RM) "led7seg.d" "osc.d" "timer.d" 
+	-$(RM) "lookup.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

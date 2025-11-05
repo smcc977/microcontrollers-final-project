@@ -3,6 +3,7 @@
 	<name>traffic-light</name>
 	<comment></comment>
 	<projects>
+		<project>periph</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
