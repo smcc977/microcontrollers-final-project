@@ -69,8 +69,11 @@ enum {
 #define   SYSCTL_RCGCGPIO_PORTN     (1 << 12) //PortN clock gating control
 #define   SYSCTL_RCGCGPIO_PORTL     (1 << 10) //PortL clock gating control
 #define   SYSCTL_RCGCGPIO_PORTM     (1 << 11) //PortL clock gating control
+#define   SYSCTL_RCGCGPIO_PORTH     (1 << 7) //PortH clock gating control
+#define   SYSCTL_RCGCGPIO_PORTA     (1 << 0) //PortA clock gating control
   SYSCTL_RCGCTIMER =      (0x604 >> 2),
 #define   SYSCTL_RCGCTIMER_TIMER3   (1 << 3) //Timer3 clock gating control
+#define   SYSCTL_RCGCTIMER_TIMER2   (1 << 2) //Timer2 clock gating control
 };
 
 #endif // _SYSCTL_H

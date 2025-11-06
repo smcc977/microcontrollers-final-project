@@ -18,6 +18,8 @@
 #define GPIO_PORTJ              ((volatile uint32_t *)0x40060000)
 #define GPIO_PORTD              ((volatile uint32_t *)0x4005B000)
 #define GPIO_PORTE              ((volatile uint32_t *)0x4005C000)
+#define GPIO_PORTH              ((volatile uint32_t *)0x4005F000)
+#define GPIO_PORTA              ((volatile uint32_t *)0x40058000)
 #define GPIO_PORTL              ((volatile uint32_t *)0x40062000)
 #define GPIO_PORTM              ((volatile uint32_t *)0x40063000)
 

@@ -16,6 +16,7 @@ ORDERED_OBJS += \
 "./lookup.obj" \
 "./osc.obj" \
 "./timer.obj" \
+"./traffic-lights.obj" \
 
 -include ../makefile.init
 
@@ -144,8 +145,8 @@ endif
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "interupt.obj" "keypad.obj" "led7seg.obj" "lookup.obj" "osc.obj" "timer.obj" 
-	-$(RM) "interupt.d" "keypad.d" "led7seg.d" "osc.d" "timer.d" 
+	-$(RM) "interupt.obj" "keypad.obj" "led7seg.obj" "lookup.obj" "osc.obj" "timer.obj" "traffic-lights.obj" 
+	-$(RM) "interupt.d" "keypad.d" "led7seg.d" "osc.d" "timer.d" "traffic-lights.d" 
 	-$(RM) "lookup.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

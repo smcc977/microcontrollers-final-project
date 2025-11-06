@@ -13,14 +13,16 @@ C_SRCS += \
 ../keypad.c \
 ../led7seg.c \
 ../osc.c \
-../timer.c 
+../timer.c \
+../traffic-lights.c 
 
 C_DEPS += \
 ./interupt.d \
 ./keypad.d \
 ./led7seg.d \
 ./osc.d \
-./timer.d 
+./timer.d \
+./traffic-lights.d 
 
 OBJS += \
 ./interupt.obj \
@@ -28,7 +30,8 @@ OBJS += \
 ./led7seg.obj \
 ./lookup.obj \
 ./osc.obj \
-./timer.obj 
+./timer.obj \
+./traffic-lights.obj 
 
 ASM_DEPS += \
 ./lookup.d 
@@ -39,14 +42,16 @@ OBJS__QUOTED += \
 "led7seg.obj" \
 "lookup.obj" \
 "osc.obj" \
-"timer.obj" 
+"timer.obj" \
+"traffic-lights.obj" 
 
 C_DEPS__QUOTED += \
 "interupt.d" \
 "keypad.d" \
 "led7seg.d" \
 "osc.d" \
-"timer.d" 
+"timer.d" \
+"traffic-lights.d" 
 
 ASM_DEPS__QUOTED += \
 "lookup.d" 
@@ -56,7 +61,8 @@ C_SRCS__QUOTED += \
 "../keypad.c" \
 "../led7seg.c" \
 "../osc.c" \
-"../timer.c" 
+"../timer.c" \
+"../traffic-lights.c" 
 
 ASM_SRCS__QUOTED += \
 "../lookup.asm" 

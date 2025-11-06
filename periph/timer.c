@@ -38,6 +38,13 @@
 // Add the calculation for your reload value here.
 #define RELOAD_VALUE    (MAINOSCFREQ / SWITCHFREQ) - 1
 
+
+
+#define   COUNT_SWITCHFREQ    1
+
+// Add the calculation for your reload value here.
+#define COUNT_RELOAD_VALUE    (MAINOSCFREQ / COUNT_SWITCHFREQ) - 1
+
 // Configure Timer3A as a periodic timer with a period of 1/200th second.
 // The names of each register you will need are defined in gptm.h; you do not 
 // need to use any registers not named there.  You will need to define the 
@@ -79,6 +86,31 @@ void initDisplayTimer( uint8_t size ) {
 
 #endif
 }
+
+void initCountTimer( uint8_t size ) {
+  SYSCTL[SYSCTL_RCGCTIMER] |= SYSCTL_RCGCTIMER_TIMER2;
+  SYSCTL[SYSCTL_RCGCTIMER] |= SYSCTL_RCGCTIMER_TIMER2;
+
+  GPTM_TIMER2[GPTM_CTL] &= ~GPTM_CTL_TAEN;
+
+  GPTM_TIMER2[GPTM_CFG] &= ~GPTM_CFG_M;
+
+  if (size == 32){
+    GPTM_TIMER2[GPTM_CFG] |= GPTM_CFG_32BITTIMER;
+    GPTM_TIMER2[GPTM_TAILR] = RELOAD_VALUE;
+  } else if (size == 16) {
+    GPTM_TIMER2[GPTM_CFG] |= GPTM_CFG_16BITTIMERS;
+    GPTM_TIMER2[GPTM_TAPR] = 1 << 5;
+    GPTM_TIMER2[GPTM_TAILR] = RELOAD_VALUE >> 2;
+  }
+
+  GPTM_TIMER2[GPTM_TAMR] &= ~GPTM_TAMR_TAMR_M;
+  GPTM_TIMER2[GPTM_TAMR] |= GPTM_TAMR_TAMR_PERIODIC;
+  GPTM_TIMER2[GPTM_ICR] = GPTM_ICR_TATOCINT;
+  GPTM_TIMER2[GPTM_CTL] |= GPTM_CTL_TAEN | GPTM_CTL_TASTALL;
+}
+
+
 
 // Wait for Timer3A to reload, then return.  Perform any necessary actions to
 // clear the reload condition.  DO NOT turn off the timer!

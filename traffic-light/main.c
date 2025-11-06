@@ -5,6 +5,9 @@
  *      Author: smccollo
  */
 
+
+//TODO
+//Configure timer timing to be one second or half second
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -31,7 +34,7 @@ uint8_t timeLeft = 1;
 
 // Values for keypad state.
 enum States {
-  INIT, LANE_ODD, LANE_EVEN, LANE_ODD_CHANGE, LANE_EVEN_CHANGE
+  INIT, STATE_1, STATE_2, STATE_25, STATE_3, STATE_4, STATE45
 };
 
 void Button13Handler( void ) {
@@ -73,40 +76,34 @@ void main ( void ) {
     // Check the keypad.
     switch( state ) {
         case INIT:
-            //set all lights to red
+            //set all lights to flash red
             //should last one second
             if ( timeLeft < 1 ) {
                 timeLeft = greenTimeLeft;
-                //switch depending on nextGreen1.3
-                if ( nextGreen13 ) {
-                    state = LANE_ODD;
-                }
-                else {
-                    state = LANE_EVEN;
-                }
+                state = STATE_1;
             }
             break;
-        case LANE_ODD:
+        case STATE_1:
             //1+3 green, 2+4 red
             //time left = 20 seconds if button not pressed
             //if button pressed should be set to 7 seconds, reset flag
             //switch to lane_odd_change when time out
             if ( timeLeft < 1 ) {
                 timeLeft = changeTimeLeft;
-                state = LANE_ODD_CHANGE;
+                state = STATE_2;
             }
             break;
-        case LANE_EVEN:
+        case STATE_2:
             //2+4 green, 1+3 red
             //time left = 20 seconds if button not pressed
             //if button pressed should be set to 7 seconds, reset flag
             //switch to lane_even_change when time out
             if ( timeLeft < 1 ) {
                  timeLeft = changeTimeLeft;
-                 state = LANE_EVEN_CHANGE;
+                 state = STATE_3;
             }
             break;
-        case LANE_ODD_CHANGE:
+        case STATE_3:
             //1+3 green, 2+4 red
             //time left = 5 seconds
             //blink the display value or just hold at 0
@@ -117,7 +114,7 @@ void main ( void ) {
                  state = INIT;
             }
             break;
-        case LANE_EVEN_CHANGE:
+        case STATE_4:
             //1+3 green, 2+4 red
             //time left = 5 seconds
             //blink the display value or just hold at 0

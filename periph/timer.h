@@ -11,6 +11,7 @@
 
 // Configure the timer to roll over at a 200Hz frequency.
 void initDisplayTimer( uint8_t size );
+void initCountTimer( uint8_t size );
 
 // Wait for the timer to roll over, then return.
 void waitOnDisplayTimer( void );
