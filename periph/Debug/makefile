@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./interupt.obj" \
 "./keypad.obj" \
 "./led7seg.obj" \
 "./lookup.obj" \
@@ -143,8 +144,8 @@ endif
 # Other Targets
 clean:
 	-$(RM) $(LIB_OUTPUTS__QUOTED)
-	-$(RM) "keypad.obj" "led7seg.obj" "lookup.obj" "osc.obj" "timer.obj" 
-	-$(RM) "keypad.d" "led7seg.d" "osc.d" "timer.d" 
+	-$(RM) "interupt.obj" "keypad.obj" "led7seg.obj" "lookup.obj" "osc.obj" "timer.obj" 
+	-$(RM) "interupt.d" "keypad.d" "led7seg.d" "osc.d" "timer.d" 
 	-$(RM) "lookup.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

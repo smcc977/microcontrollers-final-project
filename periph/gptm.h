@@ -14,6 +14,7 @@
 #include <stdint.h>
 
 // Peripheral base addresses.
+#define GPTM_TIMER2             ((volatile uint32_t *)0x40032000)
 #define GPTM_TIMER3             ((volatile uint32_t *)0x40033000)
 
 // Peripheral register offsets and special fields
@@ -38,6 +39,8 @@ enum {
   GPTM_TAILR =  (0x028 >> 2),                   // GPTM Timer A Load Interval
   GPTM_TAPR =   (0x038 >> 2),                   // GPTM TImer A Prescale
 #define GPTM_TAPR_TAPSR_M         (0xff << 0)     // GPTM Timer A Prescale Mask
+  GPTM_IMR =    (0x018 >> 2),
+#define GPTM_IMR_TATOIM           (1 << 0)
 };
 
 #endif // _GPTM_H

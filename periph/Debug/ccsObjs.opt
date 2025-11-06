@@ -1,1 +1,1 @@
-"./keypad.obj" "./led7seg.obj" "./lookup.obj" "./osc.obj" "./timer.obj" 
+"./interupt.obj" "./keypad.obj" "./led7seg.obj" "./lookup.obj" "./osc.obj" "./timer.obj" 

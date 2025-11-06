@@ -12,6 +12,7 @@
 #include "ppb.h"
 #include "sysctl.h"
 #include "gpio.h"
+#include "gptm.h"
 
 // Prototypes for peripherals.
 #include "osc.h"
@@ -24,11 +25,27 @@
 #define changeTimeLeft 20
 #define initTimeLeft 1
 
+bool button13 = false;
+bool button24 = false;
+uint8_t timeLeft = 1;
+
 // Values for keypad state.
 enum States {
   INIT, LANE_ODD, LANE_EVEN, LANE_ODD_CHANGE, LANE_EVEN_CHANGE
 };
 
+void Button13Handler( void ) {
+    button13 = true;
+}
+
+void Button24Handler( void ) {
+    button24 = true;
+}
+
+void Timer2AHandler( void ) {
+    GPTM_TIMER2[GPTM_ICR] = GPTM_ICR_TATOCINT;
+    timeLeft -= 1;
+}
 
 
 void main ( void ) {
@@ -42,10 +59,7 @@ void main ( void ) {
 
   // Initialize variable which indicates which LED digit is visible.
   uint8_t display = 0;
-  uint8_t timeLeft = 1;
-  uint8_t displayTime = 0;
-  bool button13 = false;
-  bool button24 = false;
+  //uint8_t displayTime = 0;
   bool nextGreen13 = true;
 
   // Assume initially that no keys are pressed.

@@ -55,6 +55,7 @@ extern uint32_t __STACK_TOP;
 //
 //*****************************************************************************
 // To be added by user
+extern void Timer2AHandler( void );
 
 //*****************************************************************************
 //
@@ -106,7 +107,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // Timer 0 subtimer B
     IntDefaultHandler,                      // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
-    IntDefaultHandler,                      // Timer 2 subtimer A
+    Timer2AHandler,                      // Timer 2 subtimer A
     IntDefaultHandler,                      // Timer 2 subtimer B
     IntDefaultHandler,                      // Analog Comparator 0
     IntDefaultHandler,                      // Analog Comparator 1

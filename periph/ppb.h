@@ -18,6 +18,8 @@ enum {
 #define   PPB_STCTRL_ENABLE  (1<<0)
   PPB_STRELOAD = (0x14 >> 2),
   PPB_STCURRENT = (0x18 >> 2),
+  PPB_EN0 = (0x100 >> 2),
+#define   PPB_EN0_TIMER2A    (1<<23)
 };
 
 #endif /* PPB_H_ */
