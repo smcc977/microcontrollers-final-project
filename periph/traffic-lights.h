@@ -10,5 +10,9 @@
 
 void initLights( void );
 void initButtons( void );
+bool checkButtons13( void );
+bool checkButtons24( void );
+void turnLights13( uint8_t color );
+void turnLights24( uint8_t color );
 
 #endif /* TRAFFIC_LIGHTS_H_ */
