@@ -63,6 +63,7 @@ void main ( void ) {
   // Initialize oscillator and all peripherals.
   initOsc();
   initDisplayTimer( 32 );
+  initCountTimer( 32 );
   init7SegLED();
   initTimerInterupt();
   initLights();
