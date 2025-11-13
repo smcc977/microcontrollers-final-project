@@ -22,6 +22,7 @@
 #define GPIO_PORTA              ((volatile uint32_t *)0x40058000)
 #define GPIO_PORTL              ((volatile uint32_t *)0x40062000)
 #define GPIO_PORTM              ((volatile uint32_t *)0x40063000)
+#define GPIO_PORTF              ((volatile uint32_t *)0x4005D000)
 
 // Peripheral register offsets and special fields
 enum {

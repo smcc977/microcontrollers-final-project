@@ -41,28 +41,28 @@ void init7SegLED( void ) {
   // Enable PORTD and PORTE gate clocks.  The second write is only necessary
   // as a delay so that the clock is stable before writing to the GPIO
   // registers.  If we don't delay, we may get a fault.
-  SYSCTL[SYSCTL_RCGCGPIO] |= SYSCTL_RCGCGPIO_PORTA;
+  SYSCTL[SYSCTL_RCGCGPIO] |= SYSCTL_RCGCGPIO_PORTF;
   SYSCTL[SYSCTL_RCGCGPIO] |= SYSCTL_RCGCGPIO_PORTE;
   SYSCTL[SYSCTL_RCGCGPIO] |= SYSCTL_RCGCGPIO_PORTL;
 
   // To use PD7, the commit register must be written.  Before doing this,
   // a special code must be written to the lock register to enable this.
   // See the datasheet page on GPIOLOCK for details.
-  GPIO_PORTA[GPIO_LOCK] = 0x4c4f434b;
-  GPIO_PORTA[GPIO_CR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
-  GPIO_PORTA[GPIO_LOCK] = 0;
+  GPIO_PORTF[GPIO_LOCK] = 0x4c4f434b;
+  GPIO_PORTF[GPIO_CR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
+  GPIO_PORTF[GPIO_LOCK] = 0;
 
   GPIO_PORTE[GPIO_LOCK] = 0x4c4f434b;
   GPIO_PORTE[GPIO_CR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2;
   GPIO_PORTE[GPIO_LOCK] = 0;
 
   // Configure output pins on PORTD and PORTE.
-  GPIO_PORTA[GPIO_DIR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
+  GPIO_PORTF[GPIO_DIR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
   GPIO_PORTE[GPIO_DIR] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2;
   GPIO_PORTL[GPIO_DIR] |= (GPIO_PIN_0 | GPIO_PIN_1);
 
   // Enable pins on both ports.
-  GPIO_PORTA[GPIO_DEN] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
+  GPIO_PORTF[GPIO_DEN] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4;
   GPIO_PORTE[GPIO_DEN] |= GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2;
   GPIO_PORTL[GPIO_DEN] |= (GPIO_PIN_0 | GPIO_PIN_1);
 }
@@ -76,14 +76,14 @@ void displayVal(uint8_t display, uint8_t value) {
   // Write data to the active LED display.
   //TODO
   //Ensure data lines up to new ports
-  GPIO_PORTA[GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4] &= 0;
+  GPIO_PORTF[GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4] &= 0;
   GPIO_PORTE[GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2] &= 0;
   GPIO_PORTE[GPIO_PIN_1] |= (displayData[value] & (1 << 0)) << 1;
-  GPIO_PORTA[GPIO_PIN_2] |= (displayData[value] & (1 << 1)) << 2;
+  GPIO_PORTF[GPIO_PIN_2] |= (displayData[value] & (1 << 1)) << 2;
   GPIO_PORTE[GPIO_PIN_2] |= (displayData[value] & (1 << 2)) << 2;
-  GPIO_PORTA[GPIO_PIN_3] |= (displayData[value] & (1 << 3)) << 3;
-  GPIO_PORTA[GPIO_PIN_1] |= (displayData[value] & (1 << 4)) << 1;
-  GPIO_PORTA[GPIO_PIN_0] |= (displayData[value] & (1 << 5)) << 0;
-  GPIO_PORTA[GPIO_PIN_4] |= (displayData[value] & (1 << 6)) << 4;
+  GPIO_PORTF[GPIO_PIN_3] |= (displayData[value] & (1 << 3)) << 3;
+  GPIO_PORTF[GPIO_PIN_1] |= (displayData[value] & (1 << 4)) << 1;
+  GPIO_PORTF[GPIO_PIN_0] |= (displayData[value] & (1 << 5)) << 0;
+  GPIO_PORTF[GPIO_PIN_4] |= (displayData[value] & (1 << 6)) << 4;
   GPIO_PORTE[GPIO_PIN_0] |= (displayData[value] & (1 << 7)) << 0;
 }
